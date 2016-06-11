@@ -82,7 +82,7 @@ int main() {
 
     int ans = solution(goal);
     if (ans < 0) {
-        cout << "You cant present " << goal << " with this set of coins";
+        cout << "You can't present " << goal << " with this set of coins";
         return 0;
     }
 

@@ -1,17 +1,16 @@
 #include <iostream>
-#include <vector>
 #include <map>
 #include <set>
 
 using namespace std;
 
-int check(string str_) {
-    for (int i = 0; i < str_.size(); i++) {
-        if (str_[i] < '0' || str_[i] > '9') {
+int check(string s) {
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i] < '0' || s[i] > '9') {
             return -1;
         }
     }
-    return atoi(str_.c_str());
+    return atoi(s.c_str());
 }
 
 uint get_number() {
@@ -38,18 +37,18 @@ int solution(uint goal) {
         bool f = false;
         int result = INT32_MAX;
         multiset<uint> cur_set;
-        int sol;
+        int prev_sol;
         for (auto i = values.begin(); i != values.end(); i++) {
             if (goal - *i > goal) {
                 continue;
             }
-            sol = solution(goal - *i);
-            if (sol == -1) {
+            prev_sol = solution(goal - *i);
+            if (prev_sol == -1) {
                 continue;
             }
-            if (result > 1 + sol) {
+            if (result > 1 + prev_sol) {
                 f = true;
-                result = 1 + sol;
+                result = 1 + prev_sol;
                 cur_set = min_num.at(goal - *i);
                 cur_set.insert(*i);
             }
